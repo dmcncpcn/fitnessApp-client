@@ -19,6 +19,7 @@ const App = () => {
   const [showRegister, setShowRegister] = useState(false);
   const [showAddWorkout, setShowAddWorkout] = useState(false);
   const [workouts, setWorkouts] = useState([]); 
+  const [isLoading, setIsLoading] = useState(true); 
   const [message, setMessage] = useState("");
 
   
