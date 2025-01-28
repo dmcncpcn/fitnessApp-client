@@ -32,6 +32,7 @@ const Login = ({ onLoginSuccess }) => {
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
+          name="email"
           type="email"
           placeholder="Email"
           value={email}
@@ -39,6 +40,7 @@ const Login = ({ onLoginSuccess }) => {
           required
         />
         <input
+          name="password"
           type="password"
           placeholder="Password"
           value={password}

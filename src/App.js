@@ -4,6 +4,16 @@ import Register from "./components/Register";
 import Workouts from "./components/Workouts";
 import AddWorkoutModal from "./components/AddWorkoutModal";
 
+const Navbar = () => (
+  <nav className="navbar">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/workouts">Workouts</a></li>
+      <li><a href="/profile">Profile</a></li>
+    </ul>
+  </nav>
+);
+
 const App = () => {
   const [token, setToken] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
@@ -45,6 +55,8 @@ const App = () => {
           }
         } catch (error) {
           console.error("Error fetching workouts:", error);
+        } finally {
+        setIsLoading(false); // Disable loading skeleton
         }
       }
     };
@@ -86,6 +98,7 @@ const handleWorkoutAdded = (newWorkoutResponse) => {
 
   return (
     <div>
+    <Navbar />
       {token ? (
         <div>
           <p>Welcome! You are logged in.</p>
