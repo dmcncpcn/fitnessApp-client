@@ -21,43 +21,48 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
-      if (!token) return;
-      setIsLoading(true); // Start loading
+  const fetchWorkouts = async () => {
+    if (!token) return;
+    setIsLoading(true);
+    setMessage("");
 
-      try {
-        const response = await fetch(
-          "https://fitnessapp-api-ln8u.onrender.com/workouts/getMyWorkouts",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Fetched workouts:", data);
-
-          if (Array.isArray(data)) {
-            setWorkouts(data);
-          } else {
-            console.error("Expected an array, but received:", data);
-          }
-        } else {
-          console.error("Failed to fetch workouts.");
+    try {
+      const response = await fetch(
+        "https://fitnessapp-api-ln8u.onrender.com/workouts/getMyWorkouts",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
-      } catch (error) {
-        console.error("Error fetching workouts:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      );
 
-    fetchWorkouts();
-  }, [token]);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Fetched workouts:", data);
+
+        if (Array.isArray(data)) {
+          setWorkouts(data);
+        } else {
+          console.error("Expected an array, but received:", data);
+          setMessage("Failed to load workouts: Invalid data format.");
+        }
+      } else {
+        console.error("Failed to fetch workouts.");
+        setMessage("Failed to load workouts. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error fetching workouts:", error);
+      setMessage("An error occurred while loading workouts.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchWorkouts();
+}, [token]);
+  
 
   const handleLoginSuccess = (newToken) => {
     setToken(newToken);

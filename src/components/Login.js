@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setMessage("");
+
     try {
       const response = await fetch("https://fitnessapp-api-ln8u.onrender.com/users/login", {
         method: "POST",
@@ -24,7 +26,9 @@ const Login = ({ onLoginSuccess }) => {
         setMessage(data.message || "Login failed.");
       }
     } catch (error) {
-      setMessage("Login failed.");
+      setMessage("Login failed due to an error.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -50,13 +54,16 @@ const Login = ({ onLoginSuccess }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button id="login-button" data-testid="login-button" type="submit">
-          Login
+        <button
+          id="login-button"
+          data-testid="login-button"
+          type="submit"
+          disabled={isLoading}
+        >
+          {isLoading ? "Logging in..." : "Login"}
         </button>
       </form>
       {message && <p data-testid="login-message">{message}</p>}
     </div>
   );
 };
-
-export default Login;
