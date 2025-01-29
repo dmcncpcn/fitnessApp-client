@@ -5,15 +5,6 @@ import Workouts from "./components/Workouts";
 import Navbar from "./components/Navbar";
 import AddWorkoutModal from "./components/AddWorkoutModal";
 
-const Navbar = () => (
-  <nav className="navbar">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/workouts">Workouts</a></li>
-      <li><a href="/profile">Profile</a></li>
-    </ul>
-  </nav>
-);
 
 const App = () => {
   const [token, setToken] = useState(null);
