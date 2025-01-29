@@ -20,3 +20,10 @@ button {
   padding: 10px;
   margin: 10px;
 }
+.navbar {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";  
 import Workouts from "./components/Workouts";
+import Navbar from "./components/Navbar";
 import AddWorkoutModal from "./components/AddWorkoutModal";
 
 const Navbar = () => (
