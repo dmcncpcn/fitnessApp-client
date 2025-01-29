@@ -15,9 +15,10 @@ const Login = ({ onLoginSuccess }) => {
       });
 
       const data = await response.json();
-       console.log('Login Response:', data);
+      console.log("Login Response:", data);
+
       if (data.access) {
-         onLoginSuccess(data.access);  
+        onLoginSuccess(data.access);
         setMessage("Login successful!");
       } else {
         setMessage(data.message || "Login failed.");
@@ -33,6 +34,7 @@ const Login = ({ onLoginSuccess }) => {
       <form onSubmit={handleLogin}>
         <input
           id="email"
+          data-testid="email-input"
           type="email"
           placeholder="Email"
           value={email}
@@ -41,15 +43,18 @@ const Login = ({ onLoginSuccess }) => {
         />
         <input
           id="password"
+          data-testid="password-input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button id="login-button" type="submit">Login</button>
+        <button id="login-button" data-testid="login-button" type="submit">
+          Login
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p data-testid="login-message">{message}</p>}
     </div>
   );
 };

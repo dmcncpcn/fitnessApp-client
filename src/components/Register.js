@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(""); 
+  const [message, setMessage] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -31,6 +31,7 @@ const Register = () => {
       <form onSubmit={handleRegister}>
         <input
           type="email"
+          data-testid="register-email-input"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -38,14 +39,15 @@ const Register = () => {
         />
         <input
           type="password"
+          data-testid="register-password-input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Register</button>
+        <button type="submit" data-testid="register-button">Register</button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p data-testid="register-message">{message}</p>}
     </div>
   );
 };
