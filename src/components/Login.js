@@ -67,3 +67,5 @@ const Login = ({ onLoginSuccess }) => {
     </div>
   );
 };
+
+export default Login; 
